@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav>
+        <div class="logo"><b>NEXUS</b></div>
+        <div class="search">
+            <form action="/search-results" class="s" method="GET">
+                <label for="site-search"></label>
+                <input type="search" id="site-search" name="q" placeholder="Search...">
+                <img id="src" onclick="performSearch()" src="search-01-stroke-rounded.svg" alt="">
+            </form>
+        </div>
+        <div class="account">
+            <div class="account-icon" onclick="openprofile()">
+                <!-- <img src="user-circle-stroke-rounded.svg" alt=""> -->
+            </div>
+
+            <!-- profile icon -->
+            <div id="profileoverlay">
+                <div class="menu">
+                    <p>Your Profile</p>
+                    <img onclick="closeprofile()" src="cancel-01-stroke-rounded.svg" alt="">
+                </div>
+
+
+
+            </div>
+
+
+            <!-- hamburgericon -->
+            <div class="ham" id="hbtn" onclick="openhammodal()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <div id="hamoverlay">
+                <div class="menu">
+                    <p>Menu</p>
+
+                    <img onclick="closehammodal()" src="cancel-01-stroke-rounded.svg" alt="">
+                </div>
+                <div class="menu-section">
+                    <!-- <button class="menu-item active" onclick="openAllFiles()" onclick="selectItem(this, 'allfiles')">
+                        <span class="icon">📄</span>
+                        <span class="label" id="allfiles">
+                            <h3>All files</h3>
+                        </span>
+                    </button> -->
+                    <!--on clicing the file option   -->
+                    <div class="con1">
+                        <div class="boxx1">
+
+                        </div>
+                    </div>
+
+                    <!-- <button class="menu-item" onclick="" onclick="selectItem(this, 'folders')">
+                        <span class="icon">📁</span>
+                        <span class="label">
+                            <h3>Folders</h3> -->
+                        <!-- </span> -->
+                    </button>
+                    <button class="menu-item" onclick="openCommunity()" onclick="selectItem(this, 'favorites')">
+                        <span class="icon">⭐</span>
+                        <span class="label">
+                            <h3>Community</h3>
+                        </span>
+                    </button>
+                    <!-- <button class="menu-item" onclick="selectItem(this, 'recent')">
+                        <span class="icon">🕒</span>
+                        <span class="label">
+                            <h3>Recent</h3>
+                        </span>
+                    </button> -->
+                </div>
+
+
+                <div class="menu-section">
+                    <button class="menu-item" onclick="openfilemodal()" onclick="selectItem(this, 'upload')">
+                        <span class="icon">⬆️</span>
+                        <span class="label">
+                            <h3>Upload file</h3>
+                        </span>
+                    </button>
+                    <button class="menu-item" onclick="openModal()" onclick="selectItem(this, 'newfolder')">
+                        <span class="icon">📁</span>
+                        <span class="label">
+                            <h3>New folder</h3>
+                        </span>
+                    </button>
+                </div>
+
+                <!-- Section 3: Danger zone -->
+                <!-- <div class="menu-section">
+                    <button class="menu-item danger" onclick="selectItem(this, 'trash')">
+                        <span class="icon">🗑️</span>
+                        <span class="label">
+                            <h3>Trash</h3> -->
+                        </span>
+                    </button>
+                    <!-- <button class="menu-item" onclick="selectItem(this, 'settings')">
+                        <span class="icon">⚙️</span>
+                        <span class="label">
+                            <h3>Settings</h3>
+                        </span> -->
+                    <!-- </button> -->
+                    <!-- <button class="menu-item danger" onclick="selectItem(this, 'logout')">
+                        <span class="icon">🚪</span>
+                        <span class="label">
+                            <h3>Logout</h3>
+                        </span>
+                    </button> -->
+                </div>
+            </div>
+        </div>
+
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <span>DOCUMENTS</span>
+            <div class="box">
+                <div class="b1" onclick="openModal()">New Folder</div>
+                <div class="b2" onclick="openfilemodal()">New Files</div>
+            </div>
+        </div>
+        <div id="overlay">
+            <div id="modal">
+                <div class="content">
+                    <div class="top">
+                        <h3>Create new subject folder</h3>
+                        <img onclick="closeModal()" src="cancel-01-stroke-rounded.svg" alt="">
+                    </div>
+                    <p style="margin-left: 5px; color:white">Folder name</p>
+                    <input type="text" id="folder_name" style="margin-left: 5px;" placeholder="e.g. History, Biology..."
+                        required>
+
+                    <div class="btnM">
+                        <button onclick="closeModal()">Close</button>
+                        <button id="createbtn" onclick="uploadFolder()">Create</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="fileoverlay">
+            <div id="filemodal">
+                <div class="file">
+                    <div class="top">
+                        <h3>Store new file</h3>
+                        <img onclick="closefilemodal()" src="cancel-01-stroke-rounded.svg" alt="">
+                    </div>
+                    <div class="doc">
+                        <form>
+                            <label for="fileInput">Upload File</label>
+                            <input type="file" id="fileInput">
+                            <input type="text" id="imageName" placeholder="e.g. History">
+                            <br><br>
+                            <!-- <label>Upload video:</label><br>
+                            <input type="file" id="fileInput" accept="video/*">
+                            <input type="text" id="imageName" placeholder="e.g. video.mp4">
+                            <br><br>
+
+                            <label>Upload audio:</label><br>
+                            <input type="file" id="fileInput" accept="audio/*">
+                            <input type="text" id="imageName" placeholder="e.g. audio.mp3">
+                            <br><br> -->
+                            <div class="btm">
+                                <button type="submit" onclick="closefilemodal()">Cancel</button>
+                                <button id="uploadBtn" onclick="uploadFile()">Upload</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        </div>
+        <div class="main" id="foldersGrid">
+
+        </div>
+
+        <div id="folderoverlay">
+            <div id="foldercont">
+                <div id="folderhead">
+                    <span>FOLDER</span>
+                    <button id="openFolderM()" onclick="openFolderM()">FILES+</button>
+                    <button id="close" onclick="closeFolder()">CLOSE</button>
+                </div>
+                <div id="foldergr">
+                    <!-- <div class="items">
+                    < <div class="pic"><img src="folder_11186866.gif" alt=""></div>
+                    <div class="name">INFO</div>
+                    <div class="date">Apr 2026</div> -->
+                </div> -->
+            </div>
+        </div>
+        </div>
+
+        <!--folder->fileoverlay-->
+        <div id="fileoverlay1">
+            <div id="filemodal1">
+                <div class="file1">
+                    <div class="top1">
+                        <h3>Store new file</h3>
+                        <img onclick="closeFolderM()" src="cancel-01-stroke-rounded.svg" alt="">
+                    </div>
+                    <div class="doc1">
+                        <form>
+                            <label for="fileInput">Upload File:</label><br>
+                            <input type="file" id="fileInput1">
+                            <input type="text" id="imageName1" placeholder="e.g. History">
+                            <br><br>
+                            <!-- <label>Upload video:</label><br>
+                        <input type="file" id="fileInput1" accept="video/*">
+                        <input type="text" id="imageName1" placeholder="e.g. video.mp4">
+                        <br><br>
+    
+                        <label>Upload audio:</label><br>
+                        <input type="file" id="fileInput1" accept="audio/*">
+                        <input type="text" id="imageName1" placeholder="e.g. audio.mp3">
+                        <br><br> -->
+                            <!-- <div class="btm">
+                            <button type="submit" onclick="closeFolderM()">Cancel</button> -->
+                            <button id="uploadBtn1" onclick="uploadToFolder()">Upload</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        </div>
+
+        </div>
+        <!---->
+        <div id="folderoverlay_s">
+            <div id="foldercont_s">
+                <div id="folderhead_s">
+                    <span>SEARCHED FILES</span>
+                    <!-- <button id="openSearchM()" onclick="openSearchM()">FILES+</button> -->
+                    <button id="closeSearch" onclick="closeSearch()">CLOSE</button>
+                </div>
+                <div id="foldergr_s">
+                    <!-- <div class="items"> -->
+                    <!-- <div class="pic"><img src="folder_11186866.gif" alt=""></div>
+                    <div class="name">INFO</div>
+                    <div class="date">Apr 2026</div> -->
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+
+        <!--Community overlay-->
+        <div id="communityoverlay_s">
+            <div id="communitycont_s">
+                <div id="communityhead_s">
+                    <span>COMMUNITY FILES</span>
+                    <button id="openSearchM()" onclick="openCommunityoverlay()">FILES+</button>
+                    <button id="openSearchM()" onclick="openCommunitymessageoverlay()">MESSAGE</button>
+                    <button id="closeSearch" onclick="closeCommunity()">CLOSE</button>
+                </div>
+                <div id="communitygr_s">
+                    <!-- <div class="message"> -->
+                    <!-- <div class="pic"><img src="folder_11186866.gif" alt=""></div>
+                    <div class="name">INFO</div>
+                    <div class="date">Apr 2026</div> -->
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+
+        <!--community overlay-->
+        <div id="communityfileoverlay">
+            <div id="filemodal">
+                <div class="file">
+                    <div class="top">
+                        <h3>Store new community file</h3>
+                        <img onclick="closeCommunityFileModel()" src="cancel-01-stroke-rounded.svg" alt="">
+                    </div>
+                    <div class="doc">
+                        <form>
+                            <label for="fileInput">Upload File</label>
+                            <input type="file" id="communityfileInput">
+                            <input type="text" id="communityimageName" placeholder="e.g. History">
+                            <br><br>
+                            <!-- <label>Upload video:</label><br>
+                    <input type="file" id="communityfileInput" accept="video/*">
+                    <input type="text" id="communityimageName" placeholder="e.g. video.mp4">
+                    <br><br>
+
+                    <label>Upload audio:</label><br>
+                    <input type="file" id="communityfileInput" accept="audio/*">
+                    <input type="text" id="communityimageName" placeholder="e.g. audio.mp3">
+                    <br><br> -->
+                            <div class="btm">
+                                <button type="submit" onclick="closeCommunityFileModel()">Cancel</button>
+                                <button id="communityuploadBtn" onclick="uploadCommunityFile()">Upload</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!--community message overlay-->
+        <div id="communitymessageoverlay">
+            <div id="filemodal">
+                <div class="communityfile">
+                    <div class="top">
+                        <h3>Community Message</h3>
+                        <img onclick="closeCommunitymessageoverlay()" src="cancel-01-stroke-rounded.svg" alt="">
+                    </div>
+                    <div class="doc">
+                        <form>
+                            <label for="description">Message:</label>
+                            <br><br>
+                            <input type="text" id="description" name="description" placeholder="Enter message here...">
+                            <br><br>
+                            <div class="btm">
+                                <button type="submit" onclick="closeCommunitymessageoverlay()">Cancel</button>
+                                <br><br>
+                                <button id="communityUploadBtn" onclick="uploadCommunityMessage()">Upload</button>
+                            </div>
+                        </form>
+                        <div id="msggrd">
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- <div class="msg">
+            <div class="date"></div>
+            <div class="txt">
+                <p></p>
+            </div>
+        </div> -->
+    </main>
+
+    <footer>
+    </footer>
+    <script src="script.js"></script>
+</body>
