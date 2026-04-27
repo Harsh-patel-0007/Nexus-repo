@@ -586,7 +586,7 @@ async function signin() {
             // }
 
             alert("Login successful!")
-            window.location.href = 'https://nexus-repo-ten.vercel.app/dashboard.html'            // 👈 change to your page///
+            window.location.href = 'dashboard.html'            // 👈 change to your page///
             //
             //
             //
@@ -639,7 +639,7 @@ async function register() {
 
             if(res.status===201){
                 alert("account created successfully")
-                window.location.href ="https://nexus-repo-ten.vercel.app/dashboard.html"
+                window.location.href ="dashboard.html"
                 //
                 //
                 //
