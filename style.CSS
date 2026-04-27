@@ -337,7 +337,7 @@ body {
 }
 
 .items:hover {
-    background-color: rgba(139, 159, 179, 0.984);
+    background-color: white;
     border-radius: 10px;
     color: #000;
     /* transform: scale(1.05); */

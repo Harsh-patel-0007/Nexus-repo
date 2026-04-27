@@ -353,7 +353,7 @@ function createFolderCard(name, folderId, dateStr) {
     const newItem = document.createElement('div');
     newItem.className = 'items';
     newItem.innerHTML = `
-        <div class="pic"><img src="folder_9213316.png" alt=""></div>
+        <div class="pic"><img src="folder.png" alt=""></div>
         <div class="name">${name}</div>
         <div class="date">${dateLabel}</div>
     `;
