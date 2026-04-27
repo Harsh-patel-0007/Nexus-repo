@@ -138,7 +138,7 @@ async function uploadFile() {
     uploadBtn.textContent = 'Uploading...';
 
     try {
-        const response = await fetch('http://127.0.0.1:5000/api/files', {
+        const response = await fetch('https://nexus-backend-krh6.onrender.com/api/files', {
             //                           ^^^^^^^^^^^^
             //              Replace this with your actual backend endpoint URL
             //              e.g. 'http://localhost:5000/upload'  (Flask)
@@ -204,7 +204,7 @@ window.addEventListener('load', () => {
 
 async function loadFilesFromDB() {
     try {
-        const response = await fetch('http://127.0.0.1:5000/api/files',{
+        const response = await fetch('https://nexus-backend-krh6.onrender.com/api/files',{
             credentials: "include"
         }); // ← your backend IP:port
         // credentials: true
@@ -267,7 +267,7 @@ async function uploadFolder() {
     createbtn.textContent = 'creating...';
 
     try {
-        const response = await fetch('http://127.0.0.1:5000/api/folder', {
+        const response = await fetch('https://nexus-backend-krh6.onrender.com/api/folder', {
             method: 'POST',
             headers: { "Content-type": "application/json" },
             body: JSON.stringify({ folderName }),
@@ -316,7 +316,7 @@ window.addEventListener('load', () => {
 
 async function loadFoldersFromDB() {
     try {
-        const response = await fetch('http://127.0.0.1:5000/api/folder',
+        const response = await fetch('https://nexus-backend-krh6.onrender.com/api/folder',
             {
                 credentials: "include"
             }
@@ -436,7 +436,7 @@ async function openFolder(folderId, name) {
 
     try {
         // ✅ Backticks — so folderId is actually injected into the URL
-        const res = await fetch(`http://127.0.0.1:5000/api/folder/${folderId}`,{
+        const res = await fetch(`https://nexus-backend-krh6.onrender.com/api/folder/${folderId}`,{
             credentials: "include"
         })
         // credentials: true
@@ -505,7 +505,7 @@ async function uploadToFolder() {
         formData.append('fileName', fileName);
 
         // ✅ Backticks — activeFolderId is injected into URL
-        const res = await fetch(`http://127.0.0.1:5000/api/folder/${activeFolderId}`, {
+        const res = await fetch(`https://nexus-backend-krh6.onrender.com/api/folder/${activeFolderId}`, {
             method: 'POST',
             body: formData,
             credentials: "include"
@@ -562,7 +562,7 @@ async function signin() {
 
     try {
         // Step 2 — hit the backend
-        const res = await fetch('http://127.0.0.1:5000/api/auth/login', {
+        const res = await fetch('https://nexus-backend-krh6.onrender.com/api/auth/login', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -586,7 +586,16 @@ async function signin() {
             // }
 
             alert("Login successful!")
-            window.location.href = 'http://127.0.0.1:5500/frontend/dashboard.html'            // 👈 change to your page
+            window.location.href = 'http://127.0.0.1:5500/frontend/dashboard.html'            // 👈 change to your page///
+            //
+            //
+            //
+
+            //
+            //
+            //
+            //
+
 
         } else if (res.status === 401) {
             alert("Wrong email or password")
@@ -616,7 +625,7 @@ async function register() {
     }
 
     try {
-        const res = await fetch('http://127.0.0.1:5000/api/auth/register',
+        const res = await fetch('https://nexus-backend-krh6.onrender.com/api/auth/register',
             {
                 method: "POST",
                 headers: {
@@ -631,6 +640,14 @@ async function register() {
             if(res.status===201){
                 alert("account created successfully")
                 window.location.href ="http://127.0.0.1:5500/frontend/index.html"
+                //
+                //
+                //
+                //
+                //
+                //
+                //
+
 
             } 
             else if (res.status===409){
@@ -682,7 +699,7 @@ async function performSearch() {
     try {
         const token = localStorage.getItem('token')
 
-        const res = await fetch(`http://127.0.0.1:5000/api/search?key=${key}`, {
+        const res = await fetch(`https://nexus-backend-krh6.onrender.com/api/search?key=${key}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -770,7 +787,7 @@ async function uploadCommunityFile() {
     uploadBtn.textContent = 'Uploading...'
 
     try{
-        const response = await fetch('http://127.0.0.1:5000/api/community-uploads',{
+        const response = await fetch('https://nexus-backend-krh6.onrender.com/api/community-uploads',{
             method: 'POST',
             body: formData,
             credentials: "include"
@@ -812,7 +829,7 @@ window.addEventListener('load', () => {
 
 async function loadcommunityFilesFromDB() {
     try{
-        const response = await fetch('http://127.0.0.1:5000/api/community-uploads',{
+        const response = await fetch('https://nexus-backend-krh6.onrender.com/api/community-uploads',{
             credentials: "include"
         })
 
@@ -877,7 +894,7 @@ async function uploadCommunityMessage() {
     uploadBtn.textContent = 'Uploading...'
 
     try {
-        const response = await fetch('http://127.0.0.1:5000/api/community-message', {
+        const response = await fetch('https://nexus-backend-krh6.onrender.com/api/community-message', {
             method: 'POST',
             headers: { "Content-type": "application/json" },
             body: JSON.stringify({ message }),
@@ -936,7 +953,7 @@ window.addEventListener('load', () => {
 
 async function loadcommunityMessageFromDB() {
     try {
-        const response = await fetch('http://127.0.0.1:5000/api/community-message', {
+        const response = await fetch('https://nexus-backend-krh6.onrender.com/api/community-message', {
             credentials: "include"
         })
 
