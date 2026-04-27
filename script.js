@@ -1,6 +1,14 @@
 // const { json } = require("express");
 // const { json } = require("node:stream/consumers");
 
+function getAuthHeaders(){
+    const token = localStorage.getItem('token')
+    return{
+        'Authorization':`Bearer${token}`,
+        'Content-Type':'application/json'
+    }
+}
+
 // const { post } = require("d:/backend_knovia/src/app");
 
 function openModal() { document.getElementById('overlay').classList.add('active'); }
@@ -146,6 +154,7 @@ async function uploadFile() {
 
             method: 'POST',
             body: formData,
+            headers: getAuthHeaders(),
             credentials:"include"
             // ⚠️ DO NOT set Content-Type header manually.
             // The browser sets it automatically to multipart/form-data
@@ -205,7 +214,8 @@ window.addEventListener('load', () => {
 async function loadFilesFromDB() {
     try {
         const response = await fetch('https://nexus-backend-krh6.onrender.com/api/files',{
-            credentials: "include"
+            credentials: "include",
+            headers: getAuthHeaders()
         }); // ← your backend IP:port
         // credentials: true
         const data = await response.json();
@@ -270,6 +280,7 @@ async function uploadFolder() {
         const response = await fetch('https://nexus-backend-krh6.onrender.com/api/folder', {
             method: 'POST',
             headers: { "Content-type": "application/json" },
+            headers: getAuthHeaders(),
             body: JSON.stringify({ folderName }),
             credentials:"include"
         })
@@ -318,7 +329,8 @@ async function loadFoldersFromDB() {
     try {
         const response = await fetch('https://nexus-backend-krh6.onrender.com/api/folder',
             {
-                credentials: "include"
+                credentials: "include",
+                headers: getAuthHeaders()
             }
         ); // ← your backend IP:port
        
@@ -437,7 +449,8 @@ async function openFolder(folderId, name) {
     try {
         // ✅ Backticks — so folderId is actually injected into the URL
         const res = await fetch(`https://nexus-backend-krh6.onrender.com/api/folder/${folderId}`,{
-            credentials: "include"
+            credentials: "include",
+            headers: getAuthHeaders()
         })
         // credentials: true
         const files = await res.json();
@@ -508,6 +521,7 @@ async function uploadToFolder() {
         const res = await fetch(`https://nexus-backend-krh6.onrender.com/api/folder/${activeFolderId}`, {
             method: 'POST',
             body: formData,
+            headers: getAuthHeaders(),
             credentials: "include"
         });
 
@@ -701,9 +715,7 @@ async function performSearch() {
 
         const res = await fetch(`https://nexus-backend-krh6.onrender.com/api/search?key=${key}`, {
             method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
+            headers: getAuthHeaders()
         })
 
         const data = await res.json()
@@ -790,6 +802,7 @@ async function uploadCommunityFile() {
         const response = await fetch('https://nexus-backend-krh6.onrender.com/api/community-uploads',{
             method: 'POST',
             body: formData,
+            headers: getAuthHeaders(),
             credentials: "include"
         })
 
@@ -830,7 +843,8 @@ window.addEventListener('load', () => {
 async function loadcommunityFilesFromDB() {
     try{
         const response = await fetch('https://nexus-backend-krh6.onrender.com/api/community-uploads',{
-            credentials: "include"
+            credentials: "include",
+            headers: getAuthHeaders()
         })
 
         const data = await response.json()
@@ -897,6 +911,7 @@ async function uploadCommunityMessage() {
         const response = await fetch('https://nexus-backend-krh6.onrender.com/api/community-message', {
             method: 'POST',
             headers: { "Content-type": "application/json" },
+            headers: getAuthHeaders(),
             body: JSON.stringify({ message }),
             credentials: "include"
         })
@@ -954,7 +969,8 @@ window.addEventListener('load', () => {
 async function loadcommunityMessageFromDB() {
     try {
         const response = await fetch('https://nexus-backend-krh6.onrender.com/api/community-message', {
-            credentials: "include"
+            credentials: "include",
+            headers:getAuthHeaders()
         })
 
         const data = await response.json()
