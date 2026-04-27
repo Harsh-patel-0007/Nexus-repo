@@ -598,7 +598,7 @@ async function signin() {
             //     cookieStore.setItem('token', data.token)    // clears when browser closes
             //     cookieStore.setItem('user', JSON.stringify(data.user))
             // }
-
+            localStorage.setItem('token',data.token)
             alert("Login successful!")
             window.location.href = 'dashboard.html'            // 👈 change to your page///
             //
