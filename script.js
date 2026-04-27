@@ -586,7 +586,7 @@ async function signin() {
             // }
 
             alert("Login successful!")
-            window.location.href = 'http://127.0.0.1:5500/frontend/dashboard.html'            // 👈 change to your page///
+            window.location.href = 'https://your-frontend.vercel.app/dashboard.html'            // 👈 change to your page///
             //
             //
             //
@@ -639,7 +639,7 @@ async function register() {
 
             if(res.status===201){
                 alert("account created successfully")
-                window.location.href ="http://127.0.0.1:5500/frontend/index.html"
+                window.location.href ="https://your-frontend.vercel.app/dashboard.html"
                 //
                 //
                 //
